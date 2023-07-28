@@ -28,6 +28,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem "stock_quote", "~> 3.0"
+gem "font-awesome-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

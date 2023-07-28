@@ -2,8 +2,16 @@
 <p>Search Stocks:</p>
 
 <%= form_tag '#', method: :get do %>
-  <%= text_field_tag :stock, params[:stock], placeholder: "Enter Company Ticker Symbol e.g. 'AAPL'", size: 35 %>
-  <%= submit_tag 'Search' %>
+  <div class="row">
+    <div class="col-8">
+      <%= text_field_tag :stock, params[:stock], placeholder: "Enter Company Ticker Symbol e.g. 'AAPL'", autofocus: true, class: "form-control" %>
+    </div>
+    <div class="col-1">
+      <%= button_tag type: :submit, class: "btn btn-success" do %>
+        <%= fa_icon 'search' %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
 <% if @stock %>
