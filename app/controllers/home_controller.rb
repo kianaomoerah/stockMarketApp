@@ -5,12 +5,18 @@ class HomeController < ApplicationController
   def index
     @api = StockQuote::Stock.new(api_key: $api_key)
 
-    if params[:stock]
-      @stock = StockQuote::Stock.quote(params[:stock])
+    if params[:stock] == ""
+      flash[:alert] = "Please enter a company ticker symbol to search!"
+    elsif params[:stock]
+      begin
+        @stock = StockQuote::Stock.quote(params[:stock])
+      rescue
+        flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again!" 
+      end
     end
   end
 
   def about 
   end
-  
+
 end

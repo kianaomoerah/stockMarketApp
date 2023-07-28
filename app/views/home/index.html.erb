@@ -14,8 +14,17 @@
   </div>
 <% end %>
 
+<br />
+
 <% if @stock %>
   <%= @stock.company_name %>
   <br />
-  $<%= @stock.latest_price %>
+  $<%= @stock.latest_price %>  
+<% else %>
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-info">
+      <%= msg %>
+    </div>
+  <% end %>    
 <% end %>
+
