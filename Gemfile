@@ -29,6 +29,7 @@ gem "jbuilder"
 
 gem "stock_quote", "~> 3.0"
 gem "font-awesome-rails"
+gem "devise", "~> 4.9"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
