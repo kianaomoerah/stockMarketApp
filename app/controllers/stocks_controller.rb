@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
   # GET /stocks or /stocks.json
   def index
     @stocks = Stock.all
