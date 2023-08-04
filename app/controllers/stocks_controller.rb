@@ -1,4 +1,8 @@
 class StocksController < ApplicationController
+
+  require_relative '../../.api_key.rb'
+  @api = StockQuote::Stock.new(api_key: $api_key)
+
   before_action :set_stock, only: %i[ show edit update destroy ]
   # before_action :confirm_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
@@ -22,16 +26,37 @@ class StocksController < ApplicationController
 
   # POST /stocks or /stocks.json
   def create
-    @stock = Stock.new(stock_params)
+    if stock_params[:ticker] == ""
+      flash[:alert] = "Please enter a company ticker symbol to search."
+      puts "CANNOT BE BLANK"
+      redirect_to(action: 'new')
+    elsif stock_params[:ticker]
+      begin
+        search_stock = StockQuote::Stock.quote(stock_params[:ticker])
 
-    respond_to do |format|
-      if @stock.save
-        format.html { redirect_to stock_url(@stock), notice: "Stock was successfully created." }
-        format.json { render :show, status: :created, location: @stock }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
-      end
+        @stock = Stock.new(stock_params)
+  
+        if @stock.save
+          flash[:alert] = "Stock was successfully saved to your portfolio!"
+          redirect_to(action: 'index')
+        else 
+          flash[:alert] = "We're Sorry, Your stock could not be saved. Please try again."
+          redirect_to(action: 'new')
+        end
+        # respond_to do |format|
+        #   if @new_stock.save
+        #     format.html { redirect_to stock_url(@stock), notice: "Stock was successfully saved to your portfolio!" }
+        #     format.json { render :show, status: :created, location: @stock }
+        #   else
+        #     format.html { render :new, status: :unprocessable_entity }
+        #     format.json { render json: @stock.errors, status: :unprocessable_entity }
+        #   end
+        # end        
+      rescue
+        puts "THERE WAS NOTHING THERE BRUH"
+        flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
+        redirect_to(action: 'new')
+      end 
     end
   end
 
