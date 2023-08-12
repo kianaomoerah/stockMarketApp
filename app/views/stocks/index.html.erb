@@ -1,25 +1,29 @@
 <h1>My Portfolio</h1>
-
 <div id="stocks">
-  <% @stocks.each do |stock| %>
-    
+  <div class="row row-cols-3 g-3">
+
+    <% @stocks.each do |stock| %>
+
     <% quote_response = (@finnhub_client.quote(stock.ticker)).to_json %>
-    <% quote_hash = JSON.parse(quote_response) %>
-
     <% profile_response = (@finnhub_client.company_profile2({symbol: stock.ticker})).to_json %>
+    <% metric_response = (@finnhub_client.company_basic_financials('AAPL', 'all')).to_json %>
+
+    <% quote_hash = JSON.parse(quote_response) %>
     <% profile_hash = JSON.parse(profile_response) %>
+    <% metric_hash = JSON.parse(metric_response) %>
 
+    <div class="col">
+      <div class="card" style="width: 16rem;">
+        <%= render 'stock', :quote => quote_hash, :profile => profile_hash, :metric => metric_hash %>
+        <div>
+          <%= link_to "Show Details", stock, class: "btn btn-primary" %>
+          <%= link_to "Delete", stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock?" }, class: "btn btn-danger mx-1" %>
+        </div>  
+      </div>
+    </div>
+    <% end %>
+  </div>
 
-    <p>Current Price: $<%= quote_hash["c"] %></p>
-    <p>Company: <%= profile_hash["name"] %></p>
-    <p>Ticker: <%= profile_hash["ticker"] %></p>
-      
-    <p>
-      <%= link_to "Show Details", stock %>
-      <%= link_to "Delete", stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock?" }, class: "btn btn-danger mx-1" %>
-    </p>
-
-  <% end %>
 </div>
 
 <%= link_to "New stock", new_stock_path %>

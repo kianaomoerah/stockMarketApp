@@ -1,6 +1,7 @@
 class StocksController < ApplicationController
 
   require_relative '../../.api_key.rb'
+  require 'json'
 
   before_action :set_stock, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
@@ -8,7 +9,6 @@ class StocksController < ApplicationController
   def index
     @stocks = current_user.stocks
 
-    require 'json'
     require 'finnhub_ruby'
 
     FinnhubRuby.configure do |config|
@@ -19,6 +19,16 @@ class StocksController < ApplicationController
   end
 
   def show
+    @stock = Stock.find(params[:id])
+
+    require 'finnhub_ruby'
+
+    FinnhubRuby.configure do |config|
+      config.api_key['api_key'] = $api_key
+    end
+
+    @finnhub_client = FinnhubRuby::DefaultApi.new
+
   end
 
   def new
@@ -47,10 +57,10 @@ class StocksController < ApplicationController
         # do i need a variable here?
         stock_check = (finnhub_client.company_profile2({symbol: stock_params[:ticker]}))
 
-        if stock_check.empty?
-          flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
-          redirect_to(action: 'new')
-        end
+        # if stock_check.empty?
+        #   flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
+        #   redirect_to(action: 'new')
+        # end
 
         @stock = Stock.new(stock_params)
   
@@ -99,4 +109,5 @@ class StocksController < ApplicationController
     def stock_params
       params.require(:stock).permit(:ticker, :user_id)
     end
+
 end

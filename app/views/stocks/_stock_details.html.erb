@@ -1,0 +1,43 @@
+<body style="padding: 2.5rem;">
+  <div class="row" style="margin:0;padding:0;">
+    <div class="col-lg">
+      <table class="table">
+        <thead colspan="2" style="font"><strong><%= profile["name"]%></strong></thead>
+
+        <tbody>
+          <tr>
+            <td>Current Price:</td>
+            <td>$<%= quote["c"] %></td>
+          </tr>
+          <tr>
+            <td>Previous Close:</td>
+            <td>Chargeback</td>
+          </tr>
+          <tr>
+            <td>Change %</td>
+            <td><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %></td>
+          </tr>
+          <tr>
+            <td>Today's High:</td>
+            <td>$<%= quote["h"] %></td>
+          </tr>
+          <tr>
+            <td>Today's Low</td>
+            <td>$<%= quote["l"] %></td>
+          </tr>
+          <tr>
+            <td>52 Week High:</td>
+            <td>$<%= metric["metric"]["52WeekHigh"] %></td>
+          </tr>
+          <tr>
+            <td>52 Week Low:</td>
+            <td>$<%= metric["metric"]["52WeekLow"] %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md">
+
+    </div>
+  </div>
+</body>

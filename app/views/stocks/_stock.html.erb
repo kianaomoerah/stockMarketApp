@@ -1,8 +1,9 @@
-<div>
-  <p><%= stock_name.stocks[0].name %></p>
-  <p><%= stock_quote.symbol %></p>
-  <p>$<%= stock_quote.price %></p>
-  <p><%= stock_quote.change %>%</p>
-</div>
+ <%= image_tag(profile["logo"], alt: "Company logo for #{profile["name"]}") %>
 
-   <%= render 'stock', :stock_quote => stock_quote %>
+  <div class="card-body">
+    <h5 class="card-title"><%= profile["name"] %></h5>
+    <p class="card-text">Ticker: <%= profile["ticker"] %></p>
+    <p class="card-text">Current Price: $<%= quote["c"] %></p>
+    <p class="card-text">Change: <%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %>%</p>
+  </div>
+
