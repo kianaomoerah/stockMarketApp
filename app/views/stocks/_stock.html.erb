@@ -1,6 +1,8 @@
-<div id="<%= dom_id stock %>">
-  <p>
-    <strong>Ticker:</strong>
-    <%= stock.ticker %>
-  </p>
+<div>
+  <p><%= stock_name.stocks[0].name %></p>
+  <p><%= stock_quote.symbol %></p>
+  <p>$<%= stock_quote.price %></p>
+  <p><%= stock_quote.change %>%</p>
 </div>
+
+   <%= render 'stock', :stock_quote => stock_quote %>
