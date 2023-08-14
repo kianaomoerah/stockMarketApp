@@ -16,7 +16,10 @@
  */
 
 .card {
+  min-height: 95%;
+  align-self: center;
   padding-bottom: 15px;
+  margin: 10px 0px;
   border-radius: 2em;
   text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, .2);

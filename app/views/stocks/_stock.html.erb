@@ -1,9 +1,13 @@
  <%= image_tag(profile["logo"], alt: "Company logo for #{profile["name"]}") %>
 
   <div class="card-body">
-    <h5 class="card-title"><%= profile["name"] %></h5>
-    <p class="card-text">Ticker: <%= profile["ticker"] %></p>
-    <p class="card-text">Current Price: $<%= quote["c"] %></p>
-    <p class="card-text">Change: <%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %>%</p>
+    <h5 class="card-title"><%=profile["name"]%></h5>
+    <h6> (<%= profile["ticker"] %>)</h4>
+
+    <% if quote["dp"] > 0 %>
+      <p class="card-text">Current: $<%= quote["c"] %> ( +<%=  number_with_precision(quote["dp"], :precision => 2, :delimiter => '.')%> %)</p>
+    <% else %>
+      <p class="card-text">Current: $<%= quote["c"] %> ( <%=  number_with_precision(quote["dp"], :precision => 2, :delimiter => '.')%> %)</p>
+    <% end %>
   </div>
 

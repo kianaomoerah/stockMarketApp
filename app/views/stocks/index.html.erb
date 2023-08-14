@@ -1,6 +1,7 @@
 <h1>My Portfolio</h1>
 <div id="stocks">
-  <div class="row row-cols-3 g-3">
+
+  <div class="row">
 
     <% @stocks.each do |stock| %>
 
@@ -12,8 +13,8 @@
     <% profile_hash = JSON.parse(profile_response) %>
     <% metric_hash = JSON.parse(metric_response) %>
 
-    <div class="col">
-      <div class="card" style="width: 16rem;">
+    <div class=" col-md-6 col-lg-4 col-xl-3">
+      <div class="card">
         <%= render 'stock', :quote => quote_hash, :profile => profile_hash, :metric => metric_hash %>
         <div>
           <%= link_to "Show Details", stock, class: "btn btn-primary" %>
