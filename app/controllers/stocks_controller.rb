@@ -41,7 +41,7 @@ class StocksController < ApplicationController
 
   def create
     if stock_params[:ticker] == ""
-      flash[:alert] = "Please enter a company ticker symbol to search."
+      flash[:alert] = "Company ticker cannot be blank."
       redirect_to(action: 'new')
     elsif stock_params[:ticker]
       begin
@@ -54,13 +54,10 @@ class StocksController < ApplicationController
 
         finnhub_client = FinnhubRuby::DefaultApi.new
 
-        # do i need a variable here?
-        stock_check = (finnhub_client.company_profile2({symbol: stock_params[:ticker]}))
-
-        if stock_check.empty?
+        if (finnhub_client.company_profile2({symbol: stock_params[:ticker]})).present?
           flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
           redirect_to(action: 'new')
-        end
+        end 
 
         @stock = Stock.new(stock_params)
   
@@ -73,7 +70,7 @@ class StocksController < ApplicationController
         end
       rescue
         flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
-        redirect_to(action: 'new')
+        # redirect_to(action: 'new')
       end 
     end
   end
