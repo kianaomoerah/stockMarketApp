@@ -4,13 +4,9 @@
 
     <% @stocks.each do |stock| %>
 
-    <% quote_response = (@finnhub_client.quote(stock.ticker)).to_json %>
-    <% profile_response = (@finnhub_client.company_profile2({symbol: stock.ticker})).to_json %>
-    <% metric_response = (@finnhub_client.company_basic_financials('AAPL', 'all')).to_json %>
-
-    <% quote_hash = JSON.parse(quote_response) %>
-    <% profile_hash = JSON.parse(profile_response) %>
-    <% metric_hash = JSON.parse(metric_response) %>
+    <% quote_hash = JSON.parse((@finnhub_client.quote(stock.ticker)).to_json) %>
+    <% profile_hash = JSON.parse((@finnhub_client.company_profile2({symbol: stock.ticker})).to_json) %>
+    <% metric_hash = JSON.parse((@finnhub_client.company_basic_financials('AAPL', 'all')).to_json) %>
 
     <div class="col-md-6 col-lg-4 col-xl-3">
       <div class="card stock-card">
