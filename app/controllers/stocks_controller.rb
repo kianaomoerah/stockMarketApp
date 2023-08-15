@@ -40,11 +40,13 @@ class StocksController < ApplicationController
   end
 
   def create
-    if stock_params[:ticker] == ""
+    @stock = Stock.new(stock_params)
+     
+    if !@stock.valid?
       flash[:alert] = "Company ticker cannot be blank."
-      redirect_to(action: 'new')
-    elsif stock_params[:ticker]
-      begin
+      redirect_to(action: 'new') and return
+    else
+      begin 
         require 'finnhub_ruby'
         require 'json'
 
@@ -53,26 +55,25 @@ class StocksController < ApplicationController
         end
 
         finnhub_client = FinnhubRuby::DefaultApi.new
+        
+        stock_check = JSON.parse((finnhub_client.company_profile2({symbol: stock_params[:ticker]})).to_json)
 
-        if (finnhub_client.company_profile2({symbol: stock_params[:ticker]})).present?
+        if stock_check.empty?
           flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
-          redirect_to(action: 'new')
-        end 
-
-        @stock = Stock.new(stock_params)
-  
-        if @stock.save
-          flash[:alert] = "Stock was successfully saved to your portfolio!"
-          redirect_to(action: 'index')
+          redirect_to(action: 'new') and return 
         else 
-          flash[:alert] = "We're Sorry, Your stock could not be saved. Please try again."
-          redirect_to(action: 'new')
-        end
+          if @stock.save
+            flash[:alert] = "Stock was successfully saved to your portfolio!"
+            redirect_to(action: 'index')
+          else 
+            flash[:alert] = "We're Sorry, Your stock could not be saved. Please try again."
+            redirect_to(action: 'new')
+          end
+        end 
       rescue
-        flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
-        # redirect_to(action: 'new')
-      end 
-    end
+        flash[:alert] = "Something's gone wrong, please try again."
+      end
+    end         
   end
 
   def update
