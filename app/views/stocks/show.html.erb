@@ -6,11 +6,8 @@
 <% profile_hash = JSON.parse(profile_response) %>
 <% metric_hash = JSON.parse(metric_response) %>
 
-
-<div class="card" style="width: 16rem;">
-  <%= render 'stock_details', details: true, :quote => quote_hash, :profile => profile_hash, :metric => metric_hash %>
-  <div>
-    <%= link_to "Back to stocks", stocks_path, class: "btn btn-primary"%>
-    <%= link_to "Delete", @stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock?" }, class: "btn btn-danger mx-1" %>
-  </div>
+<%= render 'stock_details', details: true, :quote => quote_hash, :profile => profile_hash, :metric => metric_hash %>
+<div class="d-flex justify-content-center mt-5">
+  <%= link_to "Back to stocks", stocks_path, class: "btn btn-primary"%>
+  <%= link_to "Delete Stock", @stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock from your portfolio?" }, class: "btn btn-danger mx-1" %>
 </div>

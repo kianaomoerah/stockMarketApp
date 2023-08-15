@@ -1,9 +1,16 @@
-<body style="padding: 2.5rem;">
-  <div class="row" style="margin:0;padding:0;">
-    <div class="col-lg">
-      <table class="table">
-        <thead colspan="2" style="font"><strong><%= profile["name"]%></strong></thead>
-
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="card col-sm-8 col-md-6 col-lg-4 col-xl-3">
+      <%= image_tag(profile["logo"], alt: "Company logo for #{profile["name"]}", :class => "details-img") %>
+      <div class="card-body text-center">
+        <h5 class="card-title"><%=profile["name"]%></h5>
+        <h6>(<%= profile["ticker"] %>)</h6>
+      </div>
+    </div>
+    <div class="card col-sm-8 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center text-center">
+      <div class="row">
+        <table class="table">
+        <thead colspan="2" style="font"><h5>Stock Details</h5></thead>
         <tbody>
           <tr>
             <td>Current Price:</td>
@@ -11,15 +18,15 @@
           </tr>
           <tr>
             <td>Previous Close:</td>
-            <td>Chargeback</td>
+            <td>$<%= quote["pc"]%></td>
           </tr>
           <tr>
-            <td>Change %</td>
-            <td><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %></td>
+            <td>Change (%)</td>
+            <td><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %>%</td>
           </tr>
           <tr>
             <td>Today's High:</td>
-            <td>$<%= quote["h"] %></td>
+            <td>$<%= number_with_precision(quote["h"], :precision => 2, :delimiter => '.') %></td>
           </tr>
           <tr>
             <td>Today's Low</td>
@@ -35,9 +42,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="col-md">
-
+      </div>
     </div>
   </div>
-</body>
+</div>

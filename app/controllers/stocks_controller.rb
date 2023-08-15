@@ -57,10 +57,10 @@ class StocksController < ApplicationController
         # do i need a variable here?
         stock_check = (finnhub_client.company_profile2({symbol: stock_params[:ticker]}))
 
-        # if stock_check.empty?
-        #   flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
-        #   redirect_to(action: 'new')
-        # end
+        if stock_check.empty?
+          flash[:alert] = "Oh no! That stock symbol doesn't exist, please try again."
+          redirect_to(action: 'new')
+        end
 
         @stock = Stock.new(stock_params)
   
