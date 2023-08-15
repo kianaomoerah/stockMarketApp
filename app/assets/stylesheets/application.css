@@ -17,6 +17,7 @@
 
 .stock-card {
   min-height: 95%;
+  max-width: 85;
   align-self: center;
   padding-bottom: 15px;
   margin: 10px 0px;
