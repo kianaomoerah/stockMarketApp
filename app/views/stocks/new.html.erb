@@ -1,9 +1,13 @@
 <h1>Add New Stock</h1>
 
-<%= render "form", stock: @stock %>
+<div class="row">
+  <div class= "col-auto mt-4 p-5 bg-light text-black rounded">
+  <%= render "form", stock: @stock %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to stocks", stocks_path %>
+    <div>
+      <%= link_to "Back to Portfolio", stocks_path, class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>
