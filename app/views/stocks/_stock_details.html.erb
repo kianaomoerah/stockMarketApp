@@ -20,8 +20,9 @@
             <td>$<%= quote["pc"]%></td>
           </tr>
           <tr>
+            <% sign = quote["dp"] > 0 ? "+" : "" %>  
             <td>Change (%)</td>
-            <td><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %>%</td>
+            <td><%= sign %><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %>%</td>
           </tr>
           <tr>
             <td>Today's High:</td>
