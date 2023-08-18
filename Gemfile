@@ -27,10 +27,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem "stock_quote", "~> 3.0"
-gem "font-awesome-rails"
 gem "devise", "~> 4.9"
-gem 'alphavantagerb', '~> 1.4'
 gem 'finnhub_ruby', '~> 1.1.19'
 
 # Use Redis adapter to run Action Cable in production
