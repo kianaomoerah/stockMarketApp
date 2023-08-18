@@ -15,22 +15,74 @@
  *= require_self
  */
 
-.stock-card {
+:root {
+  --lightgreen: rgba(215, 243, 228, 0.4);
+  --palegreen: #F1F9F3;
+  --green: #C7E5CE;
+  --cream: #FAF5E1;
+  --lightblue: #6DBCD9;
+  --orange: #E76F51;
+}
+
+html {
+  margin-bottom: 15px;
+}
+
+main {
+  min-height: 90vh;
+}
+
+h1 {
+  margin-top: 15px !important;
+}
+
+.lightgreen {
+  background-color: var(--lightgreen) !important;
+  border-color: var(--lightgreen) !important;
+}
+
+.green {
+  background-color: var(--green) !important;
+  border-color: var(--green) !important;
+}
+
+.cream {
+  background-color: var(--cream) !important;
+  border-color: var(--cream) !important;
+}
+
+.btn.btn-primary {
+  background-color: var(--lightblue);
+  border-color: var(--lightblue);
+}
+
+.btn.btn-danger {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+.navbar-toggler:hover {
+  background-color: var(--palegreen);
+}
+
+.nav-item > .nav-link {
+  color: #000;
+}
+
+.nav-item > .nav-link:hover,
+.nav-item > .nav-link:focus {
+  color: #FFF;
+}
+
+.card.stock-card {
   min-height: 95%;
-  max-width: 85;
   align-self: center;
   padding-bottom: 15px;
   margin: 10px 0px;
-  border-radius: 2em;
   text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 }
 
-.detail-card {
-  max-width: 75% !important;
-}
-
-.footer {
-  width: 100%;
-  background-color: #f5f5f5;
+.card.detail-card {
+  max-width: 75%;
 }

@@ -8,6 +8,6 @@
 
 <%= render 'stock_details', details: true, :quote => quote_hash, :profile => profile_hash, :metric => metric_hash %>
 <div class="d-flex justify-content-center mt-5">
-  <%= link_to "Back to stocks", stocks_path, class: "btn btn-primary"%>
+  <%= link_to "Back to Portfolio", stocks_path, class: "btn btn-primary" %>
   <%= link_to "Delete Stock", @stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock from your portfolio?" }, class: "btn btn-danger mx-1" %>
 </div>

@@ -35,10 +35,6 @@ class StocksController < ApplicationController
     @stock = Stock.new
   end
 
-  # revisit option to "edit" stock, may only want option to delete
-  def edit
-  end
-
   def create
     @stock = Stock.new(stock_params)
      
@@ -76,18 +72,6 @@ class StocksController < ApplicationController
     end         
   end
 
-  def update
-    respond_to do |format|
-      if @stock.update(stock_params)
-        format.html { redirect_to stock_url(@stock), notice: "Stock was successfully updated." }
-        format.json { render :show, status: :ok, location: @stock }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def destroy
     @stock.destroy
 
@@ -98,14 +82,12 @@ class StocksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_stock
       @stock = Stock.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def stock_params
       params.require(:stock).permit(:ticker, :user_id)
     end
-
+    
 end
