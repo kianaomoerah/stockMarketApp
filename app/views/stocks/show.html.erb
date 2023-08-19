@@ -1,12 +1,8 @@
-<% quote_response = (@finnhub_client.quote(@stock.ticker)).to_json %>
-<% profile_response = (@finnhub_client.company_profile2({symbol: @stock.ticker})).to_json %>
-<% metric_response = (@finnhub_client.company_basic_financials(@stock.ticker, 'all')).to_json %>
+<% stock_search(@stock.ticker)%>
 
-<% quote_hash = JSON.parse(quote_response) %>
-<% profile_hash = JSON.parse(profile_response) %>
-<% metric_hash = JSON.parse(metric_response) %>
+<%= render 'stock_details', details: true, :quote => @stock_info[0], :profile => @stock_info[1], :metric => @stock_info[2] %>
 
-<%= render 'stock_details', details: true, :quote => quote_hash, :profile => profile_hash, :metric => metric_hash %>
+<p class="fw-light fst-italic text-center">* All prices shown in USD<p>
 <div class="d-flex justify-content-center mt-5">
   <%= link_to "Back to Portfolio", stocks_path, class: "btn btn-primary" %>
   <%= link_to "Delete Stock", @stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock from your portfolio?" }, class: "btn btn-danger mx-1" %>

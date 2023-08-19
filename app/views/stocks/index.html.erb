@@ -8,26 +8,21 @@
 
 <div id="stocks">
   <div class="row d-flex justify-content-center">
-
     <% @stocks.each do |stock| %>
     
-    <% quote_hash = JSON.parse((@finnhub_client.quote(stock.ticker)).to_json) %>
-    <% profile_hash = JSON.parse((@finnhub_client.company_profile2({symbol: stock.ticker})).to_json) %>
-    <% metric_hash = JSON.parse((@finnhub_client.company_basic_financials(stock.ticker, 'all')).to_json) %>
+      <% stock_search(stock.ticker) %>
 
-    <div class="col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center">
-      <div class="card stock-card">
-        <%= render 'stock', :quote => quote_hash, :profile => profile_hash, :metric => metric_hash %>
-        <div>
-          <%= link_to "Show Details", stock, class: "btn btn-primary" %>
-          <%= link_to "Delete", stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock from your portfolio?" }, class: "btn btn-danger mx-1" %>
-        </div>  
+      <div class="col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center">
+        <div class="card stock-card">
+          <%= render 'stock', :quote => @stock_info[0], :profile => @stock_info[1], :metric => @stock_info[2] %>
+          <div>
+            <%= link_to "Show Details", stock, class: "btn btn-primary" %>
+            <%= link_to "Delete", stock, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this stock from your portfolio?" }, class: "btn btn-danger mx-1" %>
+          </div>  
+        </div>
       </div>
-    </div>
 
     <% end %>
-    
   </div>
   <p class="fw-light fst-italic text-end">* All prices shown in USD<p>
-
 </div>

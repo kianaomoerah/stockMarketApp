@@ -8,27 +8,10 @@ class StocksController < ApplicationController
 
   def index
     @stocks = current_user.stocks
-
-    require 'finnhub_ruby'
-
-    FinnhubRuby.configure do |config|
-      config.api_key['api_key'] = $api_key
-    end
-
-    @finnhub_client = FinnhubRuby::DefaultApi.new
   end
 
   def show
     @stock = Stock.find(params[:id])
-
-    require 'finnhub_ruby'
-
-    FinnhubRuby.configure do |config|
-      config.api_key['api_key'] = $api_key
-    end
-
-    @finnhub_client = FinnhubRuby::DefaultApi.new
-
   end
 
   def new
@@ -67,7 +50,7 @@ class StocksController < ApplicationController
           end
         end 
       rescue
-        flash[:alert] = "Something's gone wrong, please try again."
+        flash[:alert] = "Ops! Something's gone wrong on our end, please try again."
       end
     end         
   end

@@ -4,5 +4,5 @@
   <h6>(<%= profile["ticker"] %>)</h6>
 
   <% sign = quote["dp"] > 0 ? "+" : "" %>  
-  <p class="card-text">Current: $<%= quote["c"] %> (<%= sign %><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %> %)</p>
+  <p class="card-text">Current: $<%= quote["c"] %> (<%= sign %><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %>%)</p>
 </div>
