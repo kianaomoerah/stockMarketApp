@@ -1,13 +1,19 @@
 <h1>Portfolio</h1>
-<%= link_to "Add New Stock", new_stock_path, class: "btn btn-primary my-4" %>
+
+<% if @stocks.length < 8 %>
+  <%= link_to "Add New Stock", new_stock_path, class: "btn btn-primary my-4" %>
+<% else %>
+  <p>You've reached the limit of 8 stocks per portfolio, to add more please delete one of your saved stocks</p>
+<% end %>
+
 <div id="stocks">
   <div class="row d-flex justify-content-center">
 
     <% @stocks.each do |stock| %>
-
+    
     <% quote_hash = JSON.parse((@finnhub_client.quote(stock.ticker)).to_json) %>
     <% profile_hash = JSON.parse((@finnhub_client.company_profile2({symbol: stock.ticker})).to_json) %>
-    <% metric_hash = JSON.parse((@finnhub_client.company_basic_financials('AAPL', 'all')).to_json) %>
+    <% metric_hash = JSON.parse((@finnhub_client.company_basic_financials(stock.ticker, 'all')).to_json) %>
 
     <div class="col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center">
       <div class="card stock-card">
@@ -22,4 +28,6 @@
     <% end %>
     
   </div>
+  <p class="fw-light fst-italic text-end">* All prices shown in USD<p>
+
 </div>

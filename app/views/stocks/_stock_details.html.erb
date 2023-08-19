@@ -30,15 +30,15 @@
           </tr>
           <tr>
             <td>Today's Low</td>
-            <td>$<%= quote["l"] %></td>
+            <td>$<%= number_with_precision(quote["l"], :precision => 2, :delimiter => '.') %></td>
           </tr>
           <tr>
             <td>52 Week High:</td>
-            <td>$<%= metric["metric"]["52WeekHigh"] %></td>
+            <td>$<%= number_with_precision(metric["metric"]["52WeekHigh"], :precision => 2, :delimiter => '.') %></td>
           </tr>
           <tr>
             <td>52 Week Low:</td>
-            <td>$<%= metric["metric"]["52WeekLow"] %></td>
+            <td>$<%= number_with_precision(metric["metric"]["52WeekLow"], :precision => 2, :delimiter => '.') %></td>
           </tr>
         </tbody>
       </table>
