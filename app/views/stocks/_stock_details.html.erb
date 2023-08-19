@@ -22,23 +22,23 @@
           <tr>
             <% sign = quote["dp"] > 0 ? "+" : "" %>  
             <td>Change (%)</td>
-            <td><%= sign %><%= number_with_precision(quote["dp"], :precision => 2, :delimiter => '.') %>%</td>
+            <td><%= sign %><%= precision(quote["dp"]) %>%</td>
           </tr>
           <tr>
             <td>Today's High:</td>
-            <td>$<%= number_with_precision(quote["h"], :precision => 2, :delimiter => '.') %></td>
+            <td>$<%= precision(quote["h"])%></td>
           </tr>
           <tr>
             <td>Today's Low</td>
-            <td>$<%= number_with_precision(quote["l"], :precision => 2, :delimiter => '.') %></td>
+            <td>$<%= precision(quote["l"])%></td>
           </tr>
           <tr>
             <td>52 Week High:</td>
-            <td>$<%= number_with_precision(metric["metric"]["52WeekHigh"], :precision => 2, :delimiter => '.') %></td>
+            <td>$<%= precision(metric["metric"]["52WeekHigh"])%></td>
           </tr>
           <tr>
             <td>52 Week Low:</td>
-            <td>$<%= number_with_precision(metric["metric"]["52WeekLow"], :precision => 2, :delimiter => '.') %></td>
+            <td>$<%= precision(metric["metric"]["52WeekLow"])%></td>
           </tr>
         </tbody>
       </table>

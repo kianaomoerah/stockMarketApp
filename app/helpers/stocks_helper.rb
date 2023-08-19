@@ -20,5 +20,9 @@ module StocksHelper
       flash[:alert] = "There appears to be an issue retrieving your requested stock information. Please try again. "
     end
   end
+
+  def precision(num)
+    number_with_precision(num, :precision => 2, :delimiter => '.')
+  end
   
 end
