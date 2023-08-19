@@ -29,6 +29,7 @@ gem "jbuilder"
 
 gem "devise", "~> 4.9"
 gem 'finnhub_ruby', '~> 1.1.19'
+gem 'jquery-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
