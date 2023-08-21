@@ -60,12 +60,23 @@ h1 {
   border-color: var(--orange);
 }
 
-.navbar-toggler:hover {
+.navbar.navbar-expand-md {
+  padding-top: 5px;
+  padding-bottom: 5px
+}
+
+.navbar-brand {
+  margin-left: 10px;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
   background-color: var(--palegreen);
 }
 
 .nav-item > .nav-link {
   color: #000;
+  margin-left: 10px
 }
 
 .nav-item > .nav-link:hover,
