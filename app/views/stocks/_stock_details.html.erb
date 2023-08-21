@@ -13,32 +13,32 @@
         <tbody>
           <tr>
             <td>Current Price:</td>
-            <td>$<%= quote["c"] %></td>
+            <td>$<%= quote["c"] || "N/A" %></td>
           </tr>
           <tr>
             <td>Previous Close:</td>
-            <td>$<%= quote["pc"]%></td>
+            <td>$<%= quote["pc"] || "N/A" %></td>
           </tr>
           <tr>
             <% sign = quote["dp"] > 0 ? "+" : "" %>  
             <td>Change (%)</td>
-            <td><%= sign %><%= precision(quote["dp"]) %>%</td>
+            <td><%= sign || "N/A" %><%= precision(quote["dp"]) || "N/A" %>%</td>
           </tr>
           <tr>
             <td>Today's High:</td>
-            <td>$<%= precision(quote["h"])%></td>
+            <td>$<%= precision(quote["h"]) || "N/A" %></td>
           </tr>
           <tr>
             <td>Today's Low</td>
-            <td>$<%= precision(quote["l"])%></td>
+            <td>$<%= precision(quote["l"]) || "N/A" %></td>
           </tr>
           <tr>
             <td>52 Week High:</td>
-            <td>$<%= precision(metric["metric"]["52WeekHigh"])%></td>
+            <td>$<%= precision(metric["metric"]["52WeekHigh"]) || "N/A" %></td>
           </tr>
           <tr>
             <td>52 Week Low:</td>
-            <td>$<%= precision(metric["metric"]["52WeekLow"])%></td>
+            <td>$<%= precision(metric["metric"]["52WeekLow"]) || "N/A" %></td>
           </tr>
         </tbody>
       </table>
