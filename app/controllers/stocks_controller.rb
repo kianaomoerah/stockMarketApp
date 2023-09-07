@@ -30,7 +30,7 @@ class StocksController < ApplicationController
         require 'json'
 
         FinnhubRuby.configure do |config|
-          config.api_key['api_key'] = $api_key
+          config.api_key['api_key'] = ENV["API_KEY"]
         end
 
         finnhub_client = FinnhubRuby::DefaultApi.new
