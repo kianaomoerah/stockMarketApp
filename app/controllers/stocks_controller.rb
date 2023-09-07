@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
 
-  require_relative '../../.api_key.rb'
+  require './.api_key.rb'
   require 'json'
 
   before_action :set_stock, only: %i[ show edit update destroy ]
