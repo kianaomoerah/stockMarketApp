@@ -86,6 +86,7 @@ h1 {
 
 .card.stock-card {
   min-height: 95%;
+  min-width: 75%;
   align-self: center;
   padding-bottom: 15px;
   margin: 10px 0px;
