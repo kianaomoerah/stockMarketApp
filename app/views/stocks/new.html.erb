@@ -1,5 +1,8 @@
 <h1>Add New Stock</h1>
 
+<% if @stocks.length >= 8 %>
+  <p>You've reached the limit of 8 stocks per portfolio, to add another stock please delete one of your saved stocks.</p>
+<% end %>
 <div class="row">
   <div class= "col-auto mt-4 py-5 px-4 lightgreen text-black rounded">
     <%= render "form", stock: @stock %>
@@ -7,7 +10,7 @@
     <br>
 
     <div>
-      <%= link_to "Back to Portfolio", stocks_path, class: "btn btn-primary" %>
+      <%= link_to "My Portfolio", stocks_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>

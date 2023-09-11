@@ -3,7 +3,7 @@
 <% if @stocks.length < 8 %>
   <%= link_to "Add New Stock", new_stock_path, class: "btn btn-primary my-4" %>
 <% else %>
-  <p>You've reached the limit of 8 stocks per portfolio, to add more please delete one of your saved stocks</p>
+  <p>You've reached the limit of 8 stocks per portfolio, to add more please delete one of your saved stocks.</p>
 <% end %>
 
 <div id="stocks">

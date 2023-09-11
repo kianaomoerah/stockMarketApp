@@ -16,9 +16,10 @@
       <%= form.label "Enter Company Ticker Symbol:", style: "display: block" %>
       <%= form.text_field :ticker, placeholder: "e.g. 'AAPL'", class: "form-control" %>
     </div>
+    
 
     <div class="col-2 mb-2 d-flex align-items-end">
-      <%= form.submit class: "btn btn-success" %>
+      <%= form.submit class: "btn btn-success #{'disabled' if @stocks.length >= 8}", aria: {disabled: (@stocks.length >= 8 ? true : false)} %>
     </div>
 
     <div class="col-1">

@@ -15,6 +15,7 @@ class StocksController < ApplicationController
 
   def new
     @stock = Stock.new
+    @stocks = current_user.stocks
   end
 
   def create
