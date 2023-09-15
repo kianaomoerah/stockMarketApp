@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row d-flex justify-content-center">
     <div class="card detail-card col-sm-8 col-md-6 col-lg-4 col-xl-3">
-      <%= image_tag(profile["logo"], alt: "Company logo for #{profile["name"]}", :class => "details-img") %>
+      <%= image_tag(profile["logo"], alt: "Company logo for #{profile["name"]}", :class => "details-img") rescue image_tag("tradepal_logo", alt: 'Company logo not available - TradePal logo shown') %>
       <div class="card-body text-center">
         <h5 class="card-title"><%= profile["ticker"] %></h5>
       </div>
