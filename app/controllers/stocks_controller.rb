@@ -22,7 +22,7 @@ class StocksController < ApplicationController
     @stock = Stock.new(stock_params)
      
     if !@stock.valid?
-      flash[:alert] = "Company ticker cannot be blank."
+      flash[:alert] = "Company ticker cannot be blank or contain spaces."
       redirect_to(action: 'new') and return
     else
       begin 
