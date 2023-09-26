@@ -97,3 +97,7 @@ h1 {
 .card.detail-card {
   max-width: 75%;
 }
+
+.table {
+  padding: 0;
+}
